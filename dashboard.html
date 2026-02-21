@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dashboard</title>
+  </head>
+  <body>
+  </body>
+</html>
+<!DOCTYPE html>
+<html>
+    <style>
+        @font-face {
+            font-family: 'Mona Sans';
+            src:
+                url('/assets/font.woff2') format('woff2 supports variations'),
+                url('/assets/font.woff2') format('woff2-variations');
+            font-weight: 200 900;
+            font-stretch: 75% 125%;
+        }
+
+        @font-face {
+            font-family: 'Hubot Sans';
+            src:
+                url('/assets/font.woff2') format('woff2 supports variations'),
+                url('/assets/font.woff2') format('woff2-variations');
+            font-weight: 200 900;
+            font-stretch: 75% 125%;
+        }
+        html * {
+            line-height: 1;
+            font-family: 'Mona Sans', 'Hubot Sans';
+            color: #000000; 
+        }
+        body {
+            background-color: rgba(237, 195, 129, 0.95); 
+            background-image: url('about:blank');
+            background-repeat: no-repeat;
+        }
+        .action-bar {
+            background-color: #8d4c00;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px;
+        }
+        .action-bar a {
+            color: #ffffff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .action-bar a:hover {
+            text-decoration: underline;
+        }
+        .logo {
+            height: 40px;
+            border-radius: 50%; 
+        }
+        .left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .top-texts {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .top-item {
+            margin: 0;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        .big-header {
+            font-family: 'Hubot Sans';
+            font-size: 72px; 
+            text-align: center;
+            margin-top: 50px;
+        }
+        .sub-header {
+            font-family: 'Hubot Sans';
+            font-size: 36px; 
+            text-align: center;
+            margin-top: 20px;
+        }
+        .sub-sub-header {
+            font-family: 'Hubot Sans';
+            font-size: 24px; 
+            text-align: center;
+            margin-top: 20px;
+        }
+        .sub-sub-sub-header {
+            font-family: 'Hubot Sans';
+            font-size: 14px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        ::selection {
+            background: rgba(48, 34, 18, 10);
+            border-radius: 10px;
+            padding: 10px;
+            color: #8d4c00;
+        }
+        .body-image {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .nodecontainer { 
+			margin: 0 auto; 
+			background: rgba(112, 112, 112, 0.95);
+			padding: 1.5rem;
+			border-radius: 8px;
+            max-width: 150px;
+            height: auto;
+            justify-content: center;
+		}
+        .center {
+            margin: 0 auto; 
+			border-radius: 0px;
+            padding-right: 200px;
+            max-width: 0px;
+            height: auto;
+            padding-top: 20px;
+            justify-content: center;
+        }
+    </style>
+    <header>
+        <div class="action-bar">
+            <div class="left">
+                <a href="/dashboard"><img src="/assets/favicon.png" alt="Logo" class="logo"></a>
+                <div class="top-texts">
+                    <a href="/login"><p class="top-item">Login</p></a>
+                    <a href="/dashboard"><p class="top-item">Dashboard</p></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <body>
+        <h3 class="sub-header">Dashboard</h3>
+        <h3 class="sub-sub-header">Scanners:</h3>
+        <div class="center"><iframe class="nodecontainer" src="/scanner_content"></iframe></div>
+    </body>
+</html>

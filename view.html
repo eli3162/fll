@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>
+        metadata
+    </title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            overflow: hidden;
+        }
+        /* full-page backdrop */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: url('/assets/page_bg.svg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -2;
+            opacity: 1;
+            pointer-events: none;
+        }
+        .split {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+        .split .left,
+        .split .right {
+            flex: 1 1 50%;
+            position: relative;
+            overflow: hidden;
+            min-width: 0;
+        }
+        .split .left model-viewer {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        .split .right .background {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        @media (max-width: 700px) {
+            .split {
+                flex-direction: column;
+                height: 100vh;
+            }
+            .split .left,
+            .split .right {
+                height: 50vh;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.1.0/model-viewer.min.js"></script>
+    <div class="split">
+        <div class="left">
+            <model-viewer alt="Artifact" src="assets/rock.glb" ar environment-image="" poster="" shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+        </div>
+        <div class="right">
+            <img class="background" src="assets/metadata.png" alt="">
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+    "Name": "Artifact",
+    "Description": "An artifact found somewhere some long time ago.",
+    "Code": "123456789",
+    "UUID": "abcdefg-1234-hijk-5678-lmnopqrstuv",
+    "pointers": {
+        "arobject": "/assets/artifact.arobject",
+        "model": "/assets/artifact.obj",
+        "thumbnail": "/assets/artifact.png",
+        "metadata": "/assets/artifact_metadata.json"
+    }
+}

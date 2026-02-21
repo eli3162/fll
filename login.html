@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Login</title>
+    <style>
+        @font-face {
+            font-family: 'Mona Sans';
+            src:
+                url('/assets/font.woff2') format('woff2 supports variations'),
+                url('/assets/font.woff2') format('woff2-variations');
+            font-weight: 200 900;
+            font-stretch: 75% 125%;
+        }
+
+        @font-face {
+            font-family: 'Hubot Sans';
+            src:
+                url('/assets/font.woff2') format('woff2 supports variations'),
+                url('/assets/font.woff2') format('woff2-variations');
+            font-weight: 200 900;
+            font-stretch: 75% 125%;
+        }
+
+        html * {
+            line-height: 1;
+            font-family: 'Mona Sans', 'Hubot Sans';
+            color: #000000;
+        }
+
+        body {
+            background-color: rgba(237, 195, 129, 0.95);
+            background-image: url('about:blank');
+            background-repeat: no-repeat;
+        }
+
+        .action-bar {
+            background-color: #8d4c00;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px;
+        }
+
+        .action-bar a {
+            color: #ffffff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .action-bar a:hover {
+            text-decoration: underline;
+        }
+
+        .logo {
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .top-texts {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .top-item {
+            margin: 0;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .big-header {
+            font-family: 'Hubot Sans';
+            font-size: 72px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .sub-header {
+            font-family: 'Hubot Sans';
+            font-size: 36px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .sub-sub-header {
+            font-family: 'Hubot Sans';
+            font-size: 24px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .sub-sub-sub-header {
+            font-family: 'Hubot Sans';
+            font-size: 14px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        ::selection {
+            background: rgba(48, 34, 18, 10);
+            border-radius: 10px;
+            padding: 10px;
+            color: #8d4c00;
+        }
+
+        .body-image {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .nodecontainer {
+            margin: 0 auto;
+            background: rgba(112, 112, 112, 0.95);
+            padding: 1.5rem;
+            border-radius: 8px;
+            max-width: 150px;
+            height: auto;
+            justify-content: center;
+        }
+
+        .center {
+            margin: 0 auto;
+            border-radius: 0px;
+            padding-right: 200px;
+            max-width: 0px;
+            height: auto;
+            padding-top: 20px;
+            justify-content: center;
+        }
+
+        .invisible {
+            display: none;
+        }
+
+        .login-box input {
+            border-radius: 12px;
+            padding: 8px 12px;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            outline: none;
+            box-sizing: border-box;
+            width: 100%;
+            margin: 8px 0;
+            font-size: 16px;
+            max-width: 160px;
+        }
+
+        .login-box button {
+            background-color: #8d4c00;
+            color: #ffffff;
+            border: none;
+            border-radius: 24px;
+            padding: 10px 18px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            max-width: 160px;
+        }
+
+        .login-box button:hover {
+            filter: brightness(0.95);
+        }
+    </style>
+</head>
+<header>
+    <div class="action-bar">
+        <div class="left">
+            <a href="/dashboard"><img src="/assets/favicon.png" alt="Logo" class="logo"></a>
+            <div class="top-texts">
+                <a href="/login">
+                    <p class="top-item">Login</p>
+                </a>
+            </div>
+        </div>
+</header>
+
+<body>
+    <div class="sub-header">
+        <div class="login-box">
+            <h2>Enter passcode</h2>
+            <input id="pass" type="password" placeholder="Passcode">
+            <input id="redirect" type="text" class="invisible" placeholder="Redirect URL (optional)" value="/dashboard">
+            <button id="go">Login</button>
+        </div>
+    </div>
+    <script src="/md5.js"
+        integrity="sha512-6Ywqk8b3E+0Pzz9zqXbB8VqF0n8kD2Q+UO6T3+C6qGkt8y1Zz2i5k6j3r3e3Pj+K6sKXyYc7QZkP4k3qQ5Kk3w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        const PASSCODE_URL = '/passcode.txt';
+
+        async function fetchExpectedHash() {
+            try {
+                const r = await fetch(PASSCODE_URL, { cache: 'no-store' });
+                if (!r.ok) throw new Error('Failed to fetch passcode');
+                const txt = await r.text();
+                return txt.trim();
+            } catch (e) {
+                console.error(e);
+                return null;
+            }
+        }
+
+        document.getElementById('go').addEventListener('click', async () => {
+            const pass = document.getElementById('pass').value || '';
+            const redirectTo = document.getElementById('redirect').value || '/dashboard';
+            if (pass.length === 0) { alert('Enter a passcode'); return; }
+
+            const expected = await fetchExpectedHash();
+            if (!expected) { alert('Could not load passcode'); return; }
+
+            const hashed = pass;
+            if (hashed === expected) {
+                window.location.href = redirectTo;
+            } else {
+                alert('Incorrect passcode');
+            }
+        });
+
+        document.getElementById('pass').addEventListener('keydown', (e) => { if (e.key === 'Enter') document.getElementById('go').click(); });
+    </script>
+</body>
+
+</html>

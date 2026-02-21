@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Convertor</title>
+	<style>
+		body { 
+			font-family: system-ui, Arial, sans-serif; 
+			padding: 2rem; 
+			background-image: url('assets/GUI.png');
+			background-size: cover;
+			background-attachment: fixed;
+			background-position: center;
+			min-height: 100vh;
+		}
+		.container { 
+			max-width: 640px; 
+			margin: 0 auto; 
+			background: rgba(237, 195, 129, 0.95);
+			padding: 1.5rem;
+			border-radius: 8px;
+		}
+		label { display:block; margin-bottom:.5rem; }
+		.file-info { margin-top:.5rem; color:#444; }
+		button, label[for="file"] { 
+			border-radius: 8px;
+			padding: 0.5rem 1rem;
+			background: rgba(237, 195, 129, 0.95);
+			border: 2px solid black;
+			cursor: pointer;
+			font-weight: bold;
+			font-size: 0.9rem;
+			display: inline-block;
+		}
+		#file {
+			display: none;
+		}
+		button:disabled {
+			opacity: 0.5;
+			cursor: not-allowed;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>PATH.FLL path to JSON</h1>
+		<form id="uploadForm" action="/convert" method="post" enctype="multipart/form-data">
+			<label for="file">Select file</label>
+			<input id="file" name="file" type="file" required />
+			<div class="file-info" id="fileInfo">No file selected.</div>
+			<div style="margin-top:1rem;">
+				<button type="submit">Upload</button>
+			</div>
+		</form>
+		<div style="margin-top:1rem; display:flex; gap:.5rem; align-items:flex-start;">
+			<button id="copyBtn" type="button" disabled>Copy</button>
+			<div id="result" style="color:#006; white-space:pre-wrap; flex:1;"></div>
+		</div>
+	</div>
+
+	<script>
+		const fileInput = document.getElementById('file');
+		const fileInfo = document.getElementById('fileInfo');
+		const form = document.getElementById('uploadForm');
+		const result = document.getElementById('result');
+		const copyBtn = document.getElementById('copyBtn');
+
+		fileInput.addEventListener('change', () => {
+			const f = fileInput.files[0];
+			fileInfo.textContent = f ? `${f.name} — ${f.size} bytes` : 'No file selected.';
+		});
+
+		form.addEventListener('submit', async (ev) => {
+			ev.preventDefault();
+			result.textContent = 'Uploading...';
+			copyBtn.disabled = true;
+			const fd = new FormData(form);
+			try {
+				const resp = await fetch(form.action, { method: 'POST', body: fd });
+				const text = await resp.text();
+				result.textContent = `Status: ${resp.status}\n\n${text}`;
+				// Enable copy only if there's content after the first blank line (the JSON body)
+				const hasBody = /\r?\n\r?\n/.test(result.textContent) && result.textContent.split(/\r?\n\r?\n/).slice(1).join('\n\n').trim() !== '';
+				copyBtn.disabled = !hasBody;
+			} catch (err) {
+				result.textContent = 'Upload failed: ' + err;
+				copyBtn.disabled = true;
+			}
+		});
+
+		copyBtn.addEventListener('click', async () => {
+			const full = result.textContent || '';
+			if (!full) return;
+			const parts = full.split(/\r?\n\r?\n/);
+			const json = parts.length > 1 ? parts.slice(1).join('\n\n').trim() : full.trim();
+			if (!json) return;
+			try {
+				if (navigator.clipboard && navigator.clipboard.writeText) {
+					await navigator.clipboard.writeText(json);
+				} else {
+					const ta = document.createElement('textarea');
+					ta.value = json;
+					document.body.appendChild(ta);
+					ta.select();
+					document.execCommand('copy');
+					document.body.removeChild(ta);
+				}
+				const orig = copyBtn.textContent;
+				copyBtn.textContent = 'Copied!';
+				copyBtn.disabled = true;
+				setTimeout(() => { copyBtn.textContent = orig; copyBtn.disabled = false; }, 1200);
+			} catch (err) {
+				console.error('Copy failed', err);
+			}
+		});
+	</script>
+</body>
+</html>
