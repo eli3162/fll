@@ -113,23 +113,30 @@
             margin-left: auto;
             margin-right: auto;
         }
-        .nodecontainer { 
-			margin: 0 auto; 
-			background: rgba(112, 112, 112, 0.95);
-			padding: 1.5rem;
-			border-radius: 8px;
-            max-width: 150px;
-            height: auto;
+        .iframes-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
             justify-content: center;
-		}
+            align-items: flex-start;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .nodecontainer {
+            background: rgba(112, 112, 112, 0.95);
+            border-radius: 8px;
+            width: 280px;
+            height: 180px;
+            border: none;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+        }
+        .nodecontainer[src] { display: block; }
         .center {
-            margin: 0 auto; 
-			border-radius: 0px;
-            padding-right: 200px;
-            max-width: 0px;
-            height: auto;
+            margin: 0 auto;
             padding-top: 20px;
-            justify-content: center;
+            text-align: center;
         }
     </style>
     <header>
@@ -146,10 +153,22 @@
     </header>
     <body>
         <h3 class="sub-header">Artifacts</h3>
-        <div class="center"><iframe class="nodecontainer" src="/scanner_content"></iframe></div>
-        <div class="center"><iframe class="nodecontainer" src="/scanner_content"></iframe></div>
-        <div class="center"><iframe class="nodecontainer" src="/scanner_content"></iframe></div>
-        <div class="center"><iframe class="nodecontainer" src="/scanner_content"></iframe></div>
-        <div class="center"><iframe class="nodecontainer" src="/scanner_content"></iframe></div>
+        <div class="iframes-grid">        
+            <iframe class="nodecontainer" src="/scanner_content"></iframe>
+            <iframe class="nodecontainer" src="/scanner_content"></iframe>
+            <iframe class="nodecontainer" src="/scanner_content"></iframe>
+            <iframe class="nodecontainer" src="/scanner_content"></iframe>
+            <iframe class="nodecontainer" src="/scanner_content"></iframe>
+            <iframe class="nodecontainer" src="/scanner_content"></iframe>
+            <iframe class="nodecontainer" src="/scanner_content"></iframe>
+            <iframe class="nodecontainer" src="/scanner_content"></iframe>
+            <iframe class="nodecontainer" src="/scanner_content"></iframe>
+            <iframe class="nodecontainer" src="/scanner_content"></iframe>            
+            <iframe class="nodecontainer" src="/scanner_content"></iframe>
+            <iframe class="nodecontainer" src="/scanner_content"></iframe>
+            <iframe class="nodecontainer" src="/scanner_content"></iframe>
+            <iframe class="nodecontainer" src="/scanner_content"></iframe>
+            <iframe class="nodecontainer" src="/scanner_content"></iframe>
+        </div>
     </body>
 </html>
