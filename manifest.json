@@ -1,6 +1,7 @@
 {
   "short_name": "Dashboard",
   "name": "Scanner Dashboard",
+  "description": "Scanner Dashboard app for Ancient Vision, a revolutionary modern archeological scanner for sorting and documenting artifacts.",
   "icons": [
     {
       "src": "/favicon-192x192.png",
