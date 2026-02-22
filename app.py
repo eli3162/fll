@@ -207,5 +207,11 @@ def login():
 		content = file.read()
 	return content
 
+@app.route('/artifacts')
+def artifacts():
+	with open('artifacts.html', 'r') as file:
+		content = file.read()
+	return content
+
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=80, debug=True)
