@@ -213,5 +213,11 @@ def artifacts():
 		content = file.read()
 	return content
 
+@app.route('/app')
+def applogin():
+	with open('login.html', 'r') as file:
+		content = file.read()
+	return content
+
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=80, debug=True)
