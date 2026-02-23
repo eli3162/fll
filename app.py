@@ -219,5 +219,12 @@ def applogin():
 		content = file.read()
 	return content
 
+@app.route('/poll')
+def poll():
+	with open('poll.html', 'r') as file:
+		content = file.read()
+	return content
+
+
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=80, debug=True)
