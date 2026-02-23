@@ -74,13 +74,17 @@
         <div class="right">
             <p class="background">Metadata:
 
-                Yipee:
-
-                Yay:
-
-                HAHA:
             </p>
         </div>
     </div>
 </body>
 </html>
+
+<script>
+    // Print the page path and resolved asset URLs to the console
+    console.log('location.href:', location.href);
+    console.log('location.origin:', location.origin);
+    console.log('location.pathname:', location.pathname);
+    console.log('Resolved asset (relative):', new URL('assets/artifact.json', location.href).href);
+    console.log('Resolved asset (root):', new URL('/assets/artifact.json', location.origin).href);
+</script>
