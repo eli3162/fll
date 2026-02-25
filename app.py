@@ -225,6 +225,17 @@ def poll():
 		content = file.read()
 	return content
 
+@app.route('/view/<filename>')
+def view(filename):
+	with open('view.html', 'r') as file:
+		content = file.read()
+	return content
+
+@app.route('/metadata/<filename>')
+def metadata(filename):
+	with open(os.path.join(os.path.dirname(__file__), 'assets', filename + ".json"), 'r') as f:
+		data = json.load(f)
+	return jsonify(data)
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=80, debug=True)

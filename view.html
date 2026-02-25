@@ -69,22 +69,95 @@
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.1.0/model-viewer.min.js"></script>
     <div class="split">
         <div class="left">
-            <model-viewer alt="Artifact" src="/assets/rock.glb" ar environment-image="" poster="" shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+            <model-viewer id="artifactViewer" alt="Artifact" src="" ar environment-image="" poster="" shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
         </div>
-        <div class="right">
-            <p class="background">Metadata:
-
-            </p>
+        <div class="right" id="metadata">
+            <!-- metadata content will be injected here -->
+            <p>Loading metadata...</p>
         </div>
     </div>
 </body>
 </html>
 
 <script>
-    // Print the page path and resolved asset URLs to the console
+    // helper: derive asset name from pathname
+    function getAssetPath() {
+        // remove leading/trailing slashes
+        const parts = location.pathname.split('/').filter(Boolean);
+        if (parts.length === 0) {
+            return null;
+        }
+        // take last element (could be file name or id)
+        const assetName = parts[parts.length - 1];
+        // append .glb if not present
+        let fileName = assetName;
+        if (!fileName.toLowerCase().endsWith('.glb')) {
+            fileName += '.glb';
+        }
+        return `/assets/${fileName}`;
+    }
+
+    // set viewer src based on path
+    const viewer = document.getElementById('artifactViewer');
+    const assetPath = getAssetPath();
+
+    if (assetPath) {
+        // optionally check existence before setting
+        fetch(assetPath, { method: 'HEAD' })
+            .then(resp => {
+                if (resp.ok) {
+                    viewer.src = assetPath;
+                } else {
+                    console.error('Asset not found:', assetPath, resp.status);
+                    viewer.alt = 'Asset not found';
+                }
+            })
+            .catch(err => {
+                console.error('Error checking asset:', err);
+                viewer.alt = 'Error loading asset';
+            });
+    } else {
+        console.warn('No pathname provided; using default asset');
+        viewer.src = '/assets/rock.glb';
+    }
+
+    // fetch metadata JSON and display in right pane
+    function getMetadataPath() {
+        const parts = location.pathname.split('/').filter(Boolean);
+        if (parts.length === 0) return null;
+        let fileName = parts[parts.length - 1];
+        if (!fileName.toLowerCase().endsWith('.json')) {
+            fileName += '.json';
+        }
+        return `/metadata/${fileName}`;
+    }
+
+    const metadataContainer = document.getElementById('metadata');
+    const metadataPath = getMetadataPath();
+
+    if (metadataPath) {
+        fetch(metadataPath)
+            .then(resp => {
+                if (!resp.ok) {
+                    throw new Error(`Status ${resp.status}`);
+                }
+                return resp.json();
+            })
+            .then(data => {
+                // pretty-print JSON
+                metadataContainer.textContent = JSON.stringify(data, null, 2);
+            })
+            .catch(err => {
+                console.error('Error loading metadata:', err);
+                metadataContainer.textContent = 'Unable to load metadata';
+            });
+    } else {
+        metadataContainer.textContent = 'No metadata path available';
+    }
+
+    // debug logs
     console.log('location.href:', location.href);
     console.log('location.origin:', location.origin);
     console.log('location.pathname:', location.pathname);
-    console.log('Resolved asset (relative):', new URL('assets/artifact.json', location.href).href);
-    console.log('Resolved asset (root):', new URL('/assets/artifact.json', location.origin).href);
+    console.log('Asset path computed:', assetPath);
 </script>
