@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        metadata
+        Metadata
     </title>
     <style>
         html, body {
@@ -72,7 +72,6 @@
             <model-viewer id="artifactViewer" alt="Artifact" src="" ar environment-image="" poster="" shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
         </div>
         <div class="right" id="metadata">
-            <!-- metadata content will be injected here -->
             <p>Loading metadata...</p>
         </div>
     </div>
@@ -80,7 +79,6 @@
 </html>
 
 <script>
-    // helper: derive asset name from pathname
     function getAssetPath() {
         // remove leading/trailing slashes
         const parts = location.pathname.split('/').filter(Boolean);
@@ -121,7 +119,6 @@
         viewer.src = '/assets/rock.glb';
     }
 
-    // fetch metadata JSON and display in right pane
     function getMetadataPath() {
         const parts = location.pathname.split('/').filter(Boolean);
         if (parts.length === 0) return null;
@@ -144,7 +141,7 @@
                 return resp.json();
             })
             .then(data => {
-                // pretty-print JSON
+
                 metadataContainer.textContent = JSON.stringify(data, null, 2);
             })
             .catch(err => {
@@ -155,7 +152,6 @@
         metadataContainer.textContent = 'No metadata path available';
     }
 
-    // debug logs
     console.log('location.href:', location.href);
     console.log('location.origin:', location.origin);
     console.log('location.pathname:', location.pathname);

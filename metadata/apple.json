@@ -1,0 +1,11 @@
+{
+    "Name": "Apple",
+    "Description": "An apple found in a tree.",
+    "Code": "987654321",
+    "UUID": "fedcba9-8765-4321-hijk-lmnopqrstuv",
+    "metadata": {
+        "age": "1 year",
+        "origin": "Orchard",
+        "material": "Fruit"
+    }
+}

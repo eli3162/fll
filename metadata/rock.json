@@ -1,0 +1,11 @@
+{
+    "Name": "Rock",
+    "Description": "A rock found in a cave.",
+    "Code": "123456789",
+    "UUID": "abcdefg-1234-hijk-5678-lmnopqrstuv",
+    "metadata": {
+        "age": "1000 years",
+        "origin": "Unknown",
+        "material": "Stone"
+    }
+}
