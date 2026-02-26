@@ -54,4 +54,4 @@ def reset_metadata():
         return 'Metadata reset successfully'
 
 if __name__ == '__main__':
-        app.run(host='0.0.0.0', port=5000, debug=True)
+        app.run(host='0.0.0.0', port=1234, debug=True)
