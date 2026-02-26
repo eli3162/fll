@@ -231,11 +231,14 @@ def view(filename):
 		content = file.read()
 	return content
 
-@app.route('/metadata/<filename>')
-def metadata(filename):
-	with open(os.path.join(os.path.dirname(__file__), 'assets', filename + ".json"), 'r') as f:
-		data = json.load(f)
-	return jsonify(data)
+@app.route('/data/<filename>')
+def data(filename):
+	try:
+		with open(os.path.join(os.path.dirname(__file__), 'metadata', filename), 'r') as f:
+			data = json.load(f)
+		return jsonify(data)
+	except Exception as e:
+		return jsonify({"error": str(e)}), 404
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=80, debug=True)

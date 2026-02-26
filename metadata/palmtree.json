@@ -1,0 +1,11 @@
+{
+    "Name": "Palm Tree",
+    "Description": "A palm tree found in a tropical forest.",
+    "Code": "987654321",
+    "UUID": "fedcba9-8765-4321-hijk-lmnopqrstuv",
+    "metadata": {
+        "age": "10 years",
+        "origin": "Forest",
+        "material": "Wood"
+    }
+}
