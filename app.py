@@ -240,5 +240,9 @@ def data(filename):
 	except Exception as e:
 		return jsonify({"error": str(e)}), 404
 
+@app.route('/install/<filename>')
+def installer_file(filename):
+	return send_from_directory('install', filename)
+
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=80, debug=True)
