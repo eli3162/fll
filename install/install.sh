@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo apt install  -y -qq figlet
+sudo apt install  -qq -y figlet
 figlet "ANCIENT VISION"
 echo "By Ethan Li"
 echo "MIT 2.0 License"
@@ -18,7 +18,7 @@ wget https://artifact-alliance.vercel.app/install/button.png -nv -q
 wget https://artifact-alliance.vercel.app/install/GUI.png -nv -q
 wget https://artifact-alliance.vercel.app/install/title.png -nv -q
 cd
-pip install -r -qq requierments.txt --break-system-packages --disable-pip-version-check
+pip install -r requierments.txt --break-system-packages --disable-pip-version-check -qq
 echo "Installation complete! The dashboard is hosted at http://localhost:1234"
 echo "Also, set service.sh to run on startup!"
 python service.py
