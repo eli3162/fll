@@ -4,6 +4,13 @@ figlet "ANCIENT VISION"
 echo "By Ethan Li"
 echo "MIT 2.0 License"
 cd
+rm -f -- vision.py >/dev/null 2>&1
+rm -f -- DRV8825.py >/dev/null 2>&1
+rm -f -- service.py >/dev/null 2>&1
+rm -f -- stop.py >/dev/null 2>&1
+rm -f -- service.sh >/dev/null 2>&1
+rm -f -- requierments.txt >/dev/null 2>&1
+rm -f -- index.html >/dev/null 2>&1
 wget https://artifact-alliance.vercel.app/install/vision.py -nv -q
 wget https://artifact-alliance.vercel.app/install/DRV8825.py -nv -q
 wget https://artifact-alliance.vercel.app/install/service.py -nv -q
@@ -12,7 +19,12 @@ wget https://artifact-alliance.vercel.app/install/service.sh -nv -q
 wget https://artifact-alliance.vercel.app/install/requierments.txt -nv -q
 wget https://artifact-alliance.vercel.app/install/index.html -nv -q
 chmod +x service.sh
+rm -f -- images -r >/dev/null 2>&1
 mkdir images && cd images
+rm -f -- click.mp3 >/dev/null 2>&1
+rm -f -- button.png >/dev/null 2>&1
+rm -f -- GUI.png >/dev/null 2>&1
+rm -f -- title.png >/dev/null 2>&1
 wget https://artifact-alliance.vercel.app/install/click.mp3 -nv -q
 wget https://artifact-alliance.vercel.app/install/button.png -nv -q
 wget https://artifact-alliance.vercel.app/install/GUI.png -nv -q
