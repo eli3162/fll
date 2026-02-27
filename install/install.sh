@@ -19,7 +19,7 @@ wget https://artifact-alliance.vercel.app/install/service.sh -nv -q
 wget https://artifact-alliance.vercel.app/install/requierments.txt -nv -q
 wget https://artifact-alliance.vercel.app/install/index.html -nv -q
 chmod +x service.sh
-rm -f -- images -r >/dev/null 2>&1
+rm images -r >/dev/null 2>&1
 mkdir images && cd images
 rm -f -- click.mp3 >/dev/null 2>&1
 rm -f -- button.png >/dev/null 2>&1
