@@ -1,0 +1,84 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scanner Dashboard</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            position: relative;
+        }
+
+        .background {
+            display: block;
+            width: 100%;
+            height: auto;
+            background-size: cover;
+            margin-top: 0;
+            z-index: 1;
+        }
+
+        .button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 50%;
+            height: auto;
+            cursor: pointer;
+            z-index: 2;
+            left: 25%;
+            right: 25%;
+            padding-top: 320px;
+        }
+        .stopbutton {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 50%;
+            height: auto;
+            cursor: pointer;
+            z-index: 2;
+            left: 48%;
+            padding-top: 530px;
+        }
+        .title {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 50%;
+            height: auto;
+            cursor: pointer;
+            z-index: 2;
+            left: 25%;
+            right: 25%;
+            padding-top: 120px;
+        }
+    </style>
+    </head>
+    <body>
+        <a href="https://artifact-alliance.vercel.app"><img class="title" src="/images/title.png" alt=""></a>
+        <a id="scanLink" href="/scan/"><img class="button" src="/images/button.png" alt="Start Scanning!"></a>
+        <img class="background" src="/images/GUI.png" alt="">
+        <audio id="clickSound" preload="auto">
+            <source src="/images/click.mp3" type="audio/mpeg">
+        </audio>
+        <a href="/stop/"><p>STOP!</p></a>
+        <script>
+            (function(){
+                const clickSound = document.getElementById('clickSound');
+                function playClick(){
+                    if(!clickSound) return;
+                    clickSound.currentTime = 0;
+                    clickSound.play().catch(e => console.warn('Sound play prevented:', e));
+                }
+                const scanLink = document.getElementById('scanLink') || document.querySelector('img.button')?.closest('a');
+                if(scanLink){
+                    scanLink.addEventListener('pointerdown', playClick);
+                    scanLink.addEventListener('click', playClick);
+                }
+            })();
+        </script>
+    </body>
+</html>
