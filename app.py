@@ -242,7 +242,7 @@ def data(filename):
 
 @app.route('/install/<filename>')
 def installer_file(filename):
-	return send_from_directory('install', filename)
+	return send_from_directory('install', filename, as_attachment=True)
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=80, debug=True)
