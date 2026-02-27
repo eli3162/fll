@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo apt install  -qq -y figlet
-figlet -f banner "ANCIENT VISION"
+figlet "ANCIENT VISION"
 echo "By Ethan Li"
 echo "MIT 2.0 License"
 cd
