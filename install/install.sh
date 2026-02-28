@@ -2,7 +2,7 @@
 sudo apt install  -qq -y figlet
 figlet "ANCIENT VISION"
 echo "By Ethan Li"
-echo "MIT 2.0 License"
+echo "MIT License"
 cd
 rm -f -- vision.py >/dev/null 2>&1
 rm -f -- DRV8825.py >/dev/null 2>&1
