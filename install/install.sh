@@ -33,4 +33,5 @@ cd
 pip install -r requierments.txt --break-system-packages --disable-pip-version-check -qq
 echo "Installation complete! The dashboard is hosted at http://localhost:1234"
 echo "Set service.sh to run on startup!"
+echo "Flask App Logs:"
 python service.py -qq || python3 service.py -qq
