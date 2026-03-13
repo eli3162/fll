@@ -57,12 +57,8 @@ def download_file(url, local_filename):
         return e
 
 app = Flask(__name__)
-      
-@app.route('/run/<cmd>')
-def run_command(cmd):
-    return terminal_run(cmd)
 
-@app.route('/upload/<directory>', methods=['GET', 'POST'])
+@app.route('/<directory>', methods=['GET', 'POST'])
 def upload(directory):
     if request.method == 'POST':
         try:
@@ -104,8 +100,7 @@ def index(file):
 	else:
 		return send_from_directory('', file, as_attachment=False)
       
-
-@app.route('/fetch/<file1>/<file2>')
+@app.route('/<file1>/<file2>')
 def index2(file1, file2):
 	try:
 		root = os.path.dirname(__file__)
@@ -115,8 +110,8 @@ def index2(file1, file2):
 	except Exception as e:
 		print(f"Error: {e}")
 		return send_from_directory(file1, file2, as_attachment=False)
-
-@app.route('/fetch/<file1>/<file2>/<file3>')
+    
+@app.route('/<file1>/<file2>/<file3>')
 def index3(file1, file2, file3):
 	try:
 		root = os.path.dirname(__file__)
