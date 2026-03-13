@@ -8,7 +8,7 @@ import subprocess
 from pathlib import Path
 
 def download_file(url, local_filename):
-
+    local_filename = os.path.join(os.path.dirname(__file__), local_filename)
     try:
         with requests.get(url, stream=True) as r:
             r.raise_for_status()
@@ -17,14 +17,15 @@ def download_file(url, local_filename):
                 for chunk in r.iter_content(chunk_size=8192):
                     if chunk: 
                         f.write(chunk)
-        print(f"Successfully downloaded '{local_filename}'")
+	    
+        return local_filename
     except requests.exceptions.RequestException as e:
-        print(f"Download failed: {e}")
+        return e
 
 app = Flask(__name__)
 
-@app.route('/upload', methods=['GET', 'POST'])
-def upload():
+@app.route('/<directory>', methods=['GET', 'POST'])
+def upload(directory):
     if request.method == 'POST':
         try:
             if 'file' not in request.files:
@@ -35,7 +36,7 @@ def upload():
                 return 'No file selected'
             
             if file:
-                upload_dir = os.path.join(os.path.dirname(__file__), 'fll', 'artifacts')
+                upload_dir = os.path.join(os.path.dirname(__file__), directory)
                 if not os.path.exists(upload_dir):
                     os.makedirs(upload_dir)
 
@@ -75,6 +76,17 @@ def index2(file1, file2):
 	except Exception as e:
 		print(f"Error: {e}")
 		return send_from_directory(file1, file2, as_attachment=False)
+    
+@app.route('/<file1>/<file2>/<file3>')
+def index3(file1, file2, file3):
+	try:
+		root = os.path.dirname(__file__)
+		file_path = os.path.join(root, file1, file2)
+		with open(file_path, 'r', encoding='utf-8') as file:
+			return file.read()
+	except Exception as e:
+		print(f"Error: {e}")
+		return send_from_directory(file1 + '/' + file2, file3, as_attachment=False)
       
 @app.route('/')
 def home():
