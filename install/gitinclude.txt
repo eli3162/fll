@@ -1,0 +1,15 @@
+button.png
+click.mp3
+db.py
+DRV8825.py
+filehost.py
+GUI.png
+index.html
+install.sh
+page_bg.svg
+requierments.txt
+service.py
+service.sh
+stop.py
+title.png
+vision.py
