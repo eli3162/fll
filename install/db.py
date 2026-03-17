@@ -58,14 +58,21 @@ def download_file(url, local_filename):
 
 app = Flask(__name__)
 
-def fetch_files(website_file_root, file_list):
+def fetch_files(website_file_root, file_list, dir='images/'):
     for file in file_list:
         url = f"{website_file_root}/{file}"
         try:
-            download_file(url, file)
+            download_file(url, dir + file)
             print(f"Downloaded {file} successfully.")
         except Exception as e:
             print(f"Failed to download {file}: {e}")
+
+def createimagelist(image_count):
+    image_list = []
+    for images in range(image_count):
+        image_name = "captured_img" + str(images) + ".jpg"
+        image_list.append(image_name)
+    return image_list
 
 @app.route('/upload/<directory>', methods=['GET', 'POST'])
 def upload(directory):
@@ -141,3 +148,5 @@ def home():
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=80, debug=False)
+
+
