@@ -45,6 +45,7 @@ cd linux-wifi-hotspot
 echo 'Building App'
 make --silent
 sudo make install
+systemctl enable create_ap
 cd
 echo "Installation complete! The dashboard is hosted at http://localhost:1234"
 echo "Set service.sh to run on startup!"
