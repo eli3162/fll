@@ -31,9 +31,11 @@ wget https://artifact-alliance.vercel.app/install/button.png -nv -q
 wget https://artifact-alliance.vercel.app/install/GUI.png -nv -q
 cd
 pip install -r requierments.txt --break-system-packages --disable-pip-version-check -qq
-sudo add-apt-repository ppa:lakinduakash/lwh
-sudo apt update
-sudo apt install -y -qq linux-wifi-hotspot
+git clone https://github.com/lakinduakash/linux-wifi-hotspot
+cd linux-wifi-hotspot
+make
+sudo make install
+cd
 echo "Installation complete! The dashboard is hosted at http://localhost:1234"
 echo "Set service.sh to run on startup!"
 echo "Flask App Logs:"
