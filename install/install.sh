@@ -5,6 +5,7 @@ echo "The future of archeological databases and scanning software"
 echo "By Ethan Li"
 echo "MIT License"
 cd
+echo 'Installation Logs:'
 echo 'Checking for and removing old install files'
 rm -f -- vision.py >/dev/null 2>&1
 rm -f -- DRV8825.py >/dev/null 2>&1
