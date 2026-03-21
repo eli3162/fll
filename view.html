@@ -64,23 +64,31 @@
         }
         #metadata table {
             width: 100%;
-            max-width: 800px;
+            min-width: 600px;
             margin: 0 auto;
             border-collapse: collapse;
             font-family: Arial, sans-serif;
             font-size: 0.5em;
+            table-layout: auto;
+        }
+        #metadata table th,
+        #metadata table td {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+            padding: 8px 4px;
         }
         #metadata table th {
             background-color: var(--table-header-color);
             color: white;
-            padding: 12px;
             text-align: left;
             font-weight: bold;
             border: 1px solid #ddd;
+            font-size: 0.8em;
         }
         #metadata table td {
-            padding: 10px 12px;
             border: 1px solid #ddd;
+            font-size: 0.7em;
         }
         #metadata table tr:nth-child(even) {
             background-color: #f2f2f2;
@@ -97,6 +105,25 @@
             .split .right {
                 height: 50vh;
             }
+            #metadata table {
+                font-size: 0.4em;
+            }
+            #metadata table th,
+            #metadata table td {
+                padding: 4px 2px;
+            }
+        }
+        @media (max-width: 480px) {
+            .split .right {
+                padding: 10px;
+            }
+            #metadata table {
+                font-size: 0.35em;
+            }
+            #metadata table th,
+            #metadata table td {
+                padding: 2px 1px;
+            }
         }
     </style>
 </head>
@@ -105,7 +132,7 @@
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.1.0/model-viewer.min.js"></script>
     <div class="split">
         <div class="left">
-            <model-viewer id="artifactViewer" alt="Artifact" src="" ar environment-image="" poster="" shadow-intensity="1" camera-controls touch-action="pan-y" auto-rotate camera-controls skybox-image="/assets/room.hdr"></model-viewer>
+            <model-viewer id="artifactViewer" alt="Artifact" src="" ar environment-image="/assets/room.hdr" poster="" shadow-intensity="1" camera-controls touch-action="pan-y" auto-rotate camera-controls skybox-image="/assets/room.hdr"></model-viewer>
             <div class="controls glass">
                     <button onclick="exportGLB()">Export Model</button>
                   </div>
@@ -196,6 +223,10 @@
     const metadataPath = getMetadataPath();
 
     function createTableFromJSON(data) {
+        const tableWrapper = document.createElement('div');
+        tableWrapper.style.overflowX = 'auto';
+        tableWrapper.style.width = '100%';
+        
         const table = document.createElement('table');
         
         const thead = document.createElement('thead');
@@ -222,7 +253,8 @@
         }
         table.appendChild(tbody);
         
-        return table;
+        tableWrapper.appendChild(table);
+        return tableWrapper;
     }
 
     if (metadataPath) {
