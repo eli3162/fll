@@ -97,6 +97,10 @@ def upload_file():
 def serve_artifact(filename):
 	return send_from_directory('assets', filename)
 
+@app.route('/models/<filename>')
+def serve_model(filename):
+	return send_from_directory('assets', filename)
+
 @app.route('/generate_metadata/<filename>')
 def generate_metadata(filename):
 	data = {
