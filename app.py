@@ -5,7 +5,6 @@ from werkzeug.utils import secure_filename
 from pathlib import Path
 from logging.handlers import RotatingFileHandler
 from collections import deque
-from icmplib import ping
 
 scanner_ip = '71.230.251.141'
 
