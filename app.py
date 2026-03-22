@@ -8,8 +8,6 @@ from collections import deque
 
 scanner_ip = '71.230.251.141'
 
-passcode = "password"
-
 def parse(data):
     marker = "#path.fll-DATA"
 
@@ -134,6 +132,11 @@ def poll():
 	with open('poll.html', 'r') as file:
 		content = file.read()
 	return content
+
+@app.route('/scripts/<filename>')
+def serve_script(filename):
+	return send_from_directory('scripts', filename)
+
 
 @app.route('/view/<filename>')
 def view(filename):
