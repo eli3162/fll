@@ -1,3 +1,5 @@
+# Credits
+
 /* TEAM */
 Programmer: Ethan Li
 Site: fourdimentional31@gmail.com, https://github.com/eli3162, https://discord.com/users/4dimention4l
