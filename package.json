@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eli3162/fll.git"
+    "url": "git+https://github.com/artifact-alliance/fll.git"
   },
   "keywords": [
     "python",
@@ -37,7 +37,7 @@
   "license": "MIT",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/eli3162/fll/issues"
+    "url": "https://github.com/artifact-alliance/fll/issues"
   },
   "homepage": "https://artifact-alliance.vercel.app/"
 }
