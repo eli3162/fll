@@ -6,7 +6,7 @@ Programmer: Ethan Li
 Site: fourdimentional31@gmail.com, https://github.com/eli3162, https://discord.com/users/4dimention4l
 Location: Great Valley Middle School, Malvern, PA, 19355
 
-Design Expert: Alexa Gou
+Design Expert: Alexa Guo
 Site: alexandrazguo@gmail.com
 Location: Stetson Middle School, West Chester, PA, 19382
 
