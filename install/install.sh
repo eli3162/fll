@@ -34,6 +34,7 @@ echo 'Downloading HTML5 Assets'
 wget https://raw.githubusercontent.com/eli3162/fll/refs/heads/main/install/click.mp3 -nv -q
 wget https://raw.githubusercontent.com/eli3162/fll/refs/heads/main/install/button.png -nv -q
 wget https://raw.githubusercontent.com/eli3162/fll/refs/heads/main/install/GUI.png -nv -q
+wget https://raw.githubusercontent.com/eli3162/fll/refs/heads/main/install/title.png -nv -q
 cd
 echo 'Installing requiered python packages'
 pip install -r requierments.txt --break-system-packages --disable-pip-version-check -qq
