@@ -91,9 +91,6 @@ Wait time between pictures: {wait} seconds
 Total pictures to take: {picture_count_per_rotation * 4}
 '''
 )
-thread = threading.Thread(target=power_monitor)
-thread.start()
-print(f'Power monitor thread started: {thread.name}')
 
 ring_turn(100, 'forward')
 ring_turn(200, 'backward')

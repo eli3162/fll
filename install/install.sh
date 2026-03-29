@@ -15,7 +15,7 @@ echo "MIT License" >> install.log 2>&1
 echo 'Installation Logs:' >> install.log 2>&1
 echo 'Checking for and removing old install files' >> install.log 2>&1
 rm -f -- vision.py >> install.log 2>&1
-rm -f -- power.py >> install.log 2>&1
+rm -f -- powermonitor.py >> install.log 2>&1
 rm -f -- DRV8825.py >> install.log 2>&1
 rm -f -- service.py >> install.log 2>&1
 rm -f -- stop.py >> install.log 2>&1
@@ -25,7 +25,7 @@ rm -f -- index.html >> install.log 2>&1
 echo 'All old install files removed, pulling new ones'
 echo 'All old install files removed, pulling new ones' >> install.log 2>&1
 wget https://artifactalliance.org/install/vision.py -4 >> install.log 2>&1
-wget https://artifactalliance.org/install/power.py -4 >> install.log 2>&1
+wget https://artifactalliance.org/install/powermonitor.py -4 >> install.log 2>&1
 wget https://artifactalliance.org/install/DRV8825.py -4 >> install.log 2>&1
 wget https://artifactalliance.org/install/service.py -4 >> install.log 2>&1
 wget https://artifactalliance.org/install/stop.py -4 >> install.log 2>&1
