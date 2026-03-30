@@ -59,6 +59,27 @@ def bevel_turn(degrees, direction):
      time.sleep(wait)
      Motor1.Stop()
 
+def power_monitor():
+    ina219 = INA219(addr=0x40)
+    while True:
+        bus_voltage = ina219.getBusVoltage_V()             # voltage on V- (load side)
+        shunt_voltage = ina219.getShuntVoltage_mV() / 1000 # voltage between V+ and V- ac>
+        current = ina219.getCurrent_mA()                   # current in mA
+        power = ina219.getPower_W()                        # power in W
+
+
+        # INA219 measure bus voltage on the load side. So PSU voltage = bus_voltage + shu>
+        #print("PSU Voltage:   {:6.3f} V".format(bus_voltage + shunt_voltage))
+        #print("Shunt Voltage: {:9.6f} V".format(shunt_voltage))
+        print("Load Voltage:  {:6.3f} V     ".format(bus_voltage))
+        print("Current:       {:6.3f} A     ".format(current/1000))
+        print("Power:         {:6.3f} W     ".format(power))
+        print("\33[4A")
+
+        time.sleep(0.1)
+
+
+
 os.system(r"figlet 'Ancient Vision'")
 
 print('The future of archeological databases and scanning software')
@@ -71,6 +92,10 @@ Wait time between pictures: {wait} seconds
 Total pictures to take: {picture_count_per_rotation * 4}
 '''
 )
+
+thread = threading.Thread(target=power_monitor)
+thread.start()
+print(f'Power monitor thread started: {thread.name}')
 
 ring_turn(100, 'forward')
 ring_turn(200, 'backward')
