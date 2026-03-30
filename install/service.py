@@ -1,8 +1,5 @@
 from flask import *
 import os, time
-from gpiolibrary import setup_sensor, temperature
-
-setup_sensor()
 
 app = Flask(__name__)
 
@@ -54,10 +51,6 @@ def attach_metadata(data):
 def reset_metadata():
         metadata.clear()
         return 'Metadata reset successfully'
-
-@app.route('/temperature/')
-def temp():
-        return str(temperature()) + ' °C'
 
 if __name__ == '__main__':
         app.run(host='0.0.0.0', port=1234, debug=True)
