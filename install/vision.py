@@ -1,11 +1,21 @@
-import time, math
+import time, math, os, threading, argparse
 from gpiolibrary import *
 import pygame.camera
-import os
 from powermonitor import *
-import threading
 
+parser = argparse.ArgumentParser(
+                    prog='Ancient Vision Scanner Control Program',
+                    description='Controls the motors and camera for the Ancient Vision Scanner',
+                    epilog='go to https://github.com/artifact-alliance/fll for more details')
+
+parser.add_argument('-w', '--wait')
+parser.add_argument('-c', '--piccount')
+
+args = parser.parse_args()
+wait = float(args.wait) if args.wait else 1
+piccount = int(args.piccount) if args.piccount else 4
 pic_count = 0
+
 pygame.camera.init()
 Motor1 = DRV8825(dir_pin=13, step_pin=19, enable_pin=12, mode_pins=(16, 17, 20))
 Motor2 = DRV8825(dir_pin=24, step_pin=18, enable_pin=4, mode_pins=(21, 22, 27))
@@ -39,11 +49,7 @@ def take_picture():
     pygame.image.save(image, "images/captured_img" + str(pic_count) + ".png")          
     #print("Picture taken and saved at images/captured_img" + str(pic_count) + ".png'.")
 
-picture_count_per_rotation = 30
-
-wait = 1
-
-pic_count = 0
+picture_count_per_rotation = int(round(piccount / 4))
 
 def ring_turn(degrees, direction):
         global picture_count_per_rotation, wait
