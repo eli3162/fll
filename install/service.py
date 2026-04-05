@@ -23,7 +23,7 @@ def scan():
                 return file.read()
         
 
-@app.route('/scan/<wait>/<piccount>/')
+@app.route('/scancustom/<wait>/<piccount>/')
 def scanwithargs(wait, piccount):
         os.system(f'python vision.py -w {wait} -c {piccount}')
         root = os.path.dirname(__file__)
