@@ -2,7 +2,7 @@
 name = "ancient-vision"
 version = "0.1.0"
 description = "Made for the First Lego League Competition by team Artifact Alliance #25491! Website & Database code for Ancient Vision, a state of the art scanner designed to save archeologists lots of time while documenting and storing artifacts, as well as storing them more efficiently using 3d models, as precise as 0.2 mm."
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 
 dependencies = [
   "Flask==3.1.2",
