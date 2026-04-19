@@ -36,6 +36,7 @@ wget https://raw.githubusercontent.com/artifact-alliance/fll/master/deploymentas
 wget https://raw.githubusercontent.com/artifact-alliance/fll/master/deploymentassets/service.sh 
 wget https://raw.githubusercontent.com/artifact-alliance/fll/master/deploymentassets/requirements.txt 
 wget https://raw.githubusercontent.com/artifact-alliance/fll/master/deploymentassets/index.html 
+wget https://raw.githubusercontent.com/artifact-alliance/fll/master/sharedassets/ancientvisionapi.py
 echo 'Main Files pulled; setting service.sh as executable' 
 echo 'Main Files pulled; setting service.sh as executable'
 chmod +x service.sh
