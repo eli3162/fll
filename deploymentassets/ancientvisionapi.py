@@ -47,7 +47,7 @@ def photogrammetryoperation(scanname=uuid.uuid4(), scannerip='192.168.12.1'):
     if file_path.is_file():
         print("File exists")
     else:
-        download_file('https://github.com/artifact-alliance/fll/raw/refs/heads/main/install/processor', '.photogrammetrycache/processor')
+        download_file('https://github.com/artifact-alliance/fll/raw/refs/heads/main/deploymentassets/processor', '.photogrammetrycache/processor')
 
     for i in range(160):
         download_file(f'http://{scanner_ip}:1234/images/captured_img{i}.png', f'.photogrammetrycache/processing{i}.png')
@@ -64,4 +64,4 @@ def photogrammetryoperation(scanname=uuid.uuid4(), scannerip='192.168.12.1'):
     os.remove(f"{scan_name}.usdz")
     return[f".photogrammetrycache/output{scan_name}.glb", f".photogrammetrycache/output{scan_name}.ply"]
 
-photogrammetryoperation(scan_name, scanner_ip)
+photogrammetryoperation(scanname=scan_name, scannerip=scanner_ip)
