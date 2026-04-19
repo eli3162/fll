@@ -1,18 +1,18 @@
 # Credits
 
-**TEAM:**
+## **TEAM:**
 
-Programmer: Ethan Li
-Site: fourdimentional31@gmail.com, https://github.com/eli3162, https://discord.com/users/4dimention4l
+Programmer: Ethan Li,
+Email: [email](mailto:fourdimentional31@gmail.com), [github](https://github.com/eli3162), [discord](https://discord.com/users/4dimention4l),
 Location: Great Valley Middle School, Malvern, PA, 19355
 
-Design Expert: Alexa Guo
-Site: alexandrazguo@gmail.com
+Design Expert: Alexa Guo,
+Email: [email](mailto:alexandrazguo@gmail.com),
 Location: Stetson Middle School, West Chester, PA, 19382
 
 Programmer: Jacky Qiu
 
-**THANKS:**
+## **THANKS:**
 
 Artifact Alliance Team:
 * Ethan Yisha Li: Great Valley Middle School, Malvern, PA, 19355
@@ -44,7 +44,7 @@ To all the open-source software used to make this project possible:
 * HTML5 
 * Javascript
 
-**SITE:**
+## **SITE:**
 Last update: [Right Now - As of FLL Unearthed Season]
 Standards: HTML5, CSS3
 Components: Python, Flask, TailwindCSS, Javascript, Swift, HTML, CSS
