@@ -1,0 +1,5 @@
+site_name: Ancient Vision Documentation
+nav:
+  - Home: index.md
+  - Credits: credits.md
+theme: readthedocs

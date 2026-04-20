@@ -74,4 +74,4 @@ echo "Installation complete! You can find the logs at install.log"
 echo "The dashboard is hosted at http://localhost:1234"
 echo "Set service.sh to run on startup!"
 echo "Flask App Logs:"
-python service.py || python3 service.py > flask.log
+uv run service.py
